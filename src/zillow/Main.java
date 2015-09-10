@@ -19,7 +19,7 @@ public class Main {
 		
 		// Set the path to store the XML data
 		String xmlPath = null;
-		xmlPath = "c:\\Users\\Michael\\Desktop\\Zillow\\zillow.xml";
+		//xmlPath = "c:\\Users\\Michael\\Desktop\\Zillow\\zillow.xml";
 		if(xmlPath == null){
 			System.out.println("Epic fail. Set your xmlPath.");
 			return;

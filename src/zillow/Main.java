@@ -30,9 +30,9 @@ public class Main {
 		int endAddr = 0;
 		try {
 			street = Input.getString("Street");
-			city = Input.getString("City");;
-			state = Input.getString("State");;	
-			zip = Input.getString("Zip");;	
+			city = Input.getString("City");
+			state = Input.getString("State");
+			zip = Input.getString("Zip");
 			startAddr = Input.getInt("Start");
 			endAddr = Input.getInt("End");
 		} catch (IOException e) {

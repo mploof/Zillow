@@ -73,7 +73,7 @@ public class Main {
 		int invest = (int)(thisP.getPEst() * down);
 		System.out.println("Estimated Down Payment: $" + invest);
 		final int MONTHS_PER_YEAR = 12;
-		System.out.println("Price/Yearly Rent Ratio: " + (thisP.getPriceRentRatio() * MONTHS_PER_YEAR) + 
+		System.out.println("Price/Yearly Rent Ratio: " + (thisP.getPriceRentRatio() / MONTHS_PER_YEAR) + 
 				" Investment/Yearly Rent Ratio: " +  ((float)invest / ((float)thisP.getREst() * MONTHS_PER_YEAR)));
 		System.out.println("");		
 	}

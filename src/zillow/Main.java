@@ -14,25 +14,37 @@ public class Main {
 	
 	static ArrayList<Property> properties = new ArrayList<Property>();	
 
-	@SuppressWarnings("unused")
 	public static void main(String[] args) {
+		
+		String manualInputStr = "-m";		
+		Boolean manualInput = false;
+		String setPathStr = "-p";		
+		Boolean setPath = false;
+		
+		for(int i = 0; i < args.length; i++){
+			if(args[i].equals(manualInputStr))
+				manualInput = true;
+			if(args[i].equals(setPathStr))
+				setPath = true;
+		}
 		
 		// Set the path to store the XML data
 		String xmlPath = null;
-		//xmlPath = "c:\\Users\\Michael\\Desktop\\Zillow\\zillow.xml";
-		if(xmlPath == null){
-			System.out.println("Epic fail. Set your xmlPath.");
-			return;
+		xmlPath = "c:\\Users\\Michael\\Desktop\\Zillow\\zillow.xml";
+		if(setPath){
+			xmlPath = Input.getString("Please input the XML path");			
 		}			
 		
 		// Get the range of addresses
 		int startAddr = 0;
 		int endAddr = 0;
 		try {
-			street = Input.getString("Street");
-			city = Input.getString("City");
-			state = Input.getString("State");
-			zip = Input.getString("Zip");
+			if(manualInput){
+				street = Input.getString("Street");
+				city = Input.getString("City");
+				state = Input.getString("State");
+				zip = Input.getString("Zip");
+			}
 			startAddr = Input.getInt("Start");
 			endAddr = Input.getInt("End");
 		} catch (IOException e) {
@@ -56,8 +68,8 @@ public class Main {
 			// Skip properties where value information is missing
 			if(thisP.getPEst() == 0)
 				continue;
-			if(thisP.getPriceRentRatio() < minRatio || minRatio == 0){
-				minRatio = thisP.getPriceRentRatio();
+			if(thisP.getPriceRentRatioLow() < minRatio || minRatio == 0){
+				minRatio = thisP.getPriceRentRatioLow();
 				minRatioIndex = i;
 			}
 		}
@@ -67,13 +79,13 @@ public class Main {
 		System.out.println("");
 		System.out.println("----------------------------------");
 		System.out.println("Best property: " + thisP.getFullAddress());
-		System.out.println("Price: low=$" + thisP.getPLow() + " estimate=$" + thisP.getPEst() + " high=$" + thisP.getPHigh() + " range=$1" + thisP.getPRange());
+		System.out.println("Price: low=$" + thisP.getPLow() + " estimate=$" + thisP.getPEst() + " high=$" + thisP.getPHigh() + " range=$" + thisP.getPRange());
 		System.out.println("Rent: low=$" + thisP.getRLow() + " estimate=$" + thisP.getREst() + " high=$" + thisP.getRHigh() + " range=$" + thisP.getRRange());
 		float down = 0.2f;
 		int invest = (int)(thisP.getPEst() * down);
 		System.out.println("Estimated Down Payment: $" + invest);
 		final int MONTHS_PER_YEAR = 12;
-		System.out.println("Price/Yearly Rent Ratio: " + (thisP.getPriceRentRatio() / MONTHS_PER_YEAR) + 
+		System.out.println("Price/Yearly Rent Ratio: " + (thisP.getPriceRentRatioLow() / MONTHS_PER_YEAR) + 
 				" Investment/Yearly Rent Ratio: " +  ((float)invest / ((float)thisP.getREst() * MONTHS_PER_YEAR)));
 		System.out.println("");		
 	}

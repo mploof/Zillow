@@ -40,6 +40,16 @@ public class Property {
 		float ret = (float) pEst / (float) rEst;
 		return ret;
 	}
+	
+	public float getPriceRentRatioLow(){
+		float ret = (float) pEst / (float) rLow;
+		return ret;
+	}
+	
+	public float getPriceRentRatioHigh(){
+		float ret = (float) pEst / (float) rHigh;
+		return ret;
+	}
 
 	public String getFullAddress(){
 		String addr = number + " " + street + ", " + city + " " + state + ", " + zip;

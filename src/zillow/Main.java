@@ -71,8 +71,10 @@ public class Main {
 		System.out.println("Rent: low=$" + thisP.getRLow() + " estimate=$" + thisP.getREst() + " high=$" + thisP.getRHigh() + " range=$" + thisP.getRRange());
 		float down = 0.2f;
 		int invest = (int)(thisP.getPEst() * down);
-		System.out.println("Estimated investment: $" + invest);
-		System.out.println("P/R ratio: " + thisP.getPriceRentRatio() + " I/R ratio: " +  ((float)invest / ((float)thisP.getREst() * 12)));
+		System.out.println("Estimated Down Payment: $" + invest);
+		final int MONTHS_PER_YEAR = 12;
+		System.out.println("Price/Yearly Rent Ratio: " + (thisP.getPriceRentRatio() * MONTHS_PER_YEAR) + 
+				" Investment/Yearly Rent Ratio: " +  ((float)invest / ((float)thisP.getREst() * MONTHS_PER_YEAR)));
 		System.out.println("");		
 	}
 }
